@@ -1,8 +1,10 @@
 #include <iostream>
+#include "Game.h"
 
 using namespace std;
 
 int main() {
-    cout << "Hello, World!" << endl;
+    Game game = Game();
+
     return 0;
 }
