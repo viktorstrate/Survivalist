@@ -2,29 +2,28 @@
 // Created by Viktor Strate on 14/07/16.
 //
 
-#ifndef SURVIVALIST_GAME_H
-#define SURVIVALIST_GAME_H
+#pragma once
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
-#include <iostream>
+#include <SDL.h>
 
 class Game {
 public:
-    Game();
+    explicit Game(bool isServer, bool isClient);
     ~Game();
-    const int WIDTH = 640;
-    const int HEIGHT = 480;
+    const int WIDTH = 480;
+    const int HEIGHT = 360;
     const float SCALE = 2.0f;
 
 private:
-    bool init();
-    bool initOpenGL();
+    bool init_graphics();
+    void main_loop();
+
+    bool isServer;
+    bool isClient;
+    bool willQuit;
+
     SDL_Window* gWindow;
     SDL_Renderer* gRenderer;
-    SDL_RendererInfo gRendererInfo;
 
 };
 
-
-#endif //SURVIVALIST_GAME_H

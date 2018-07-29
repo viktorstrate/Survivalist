@@ -3,60 +3,81 @@
 //
 
 #include "Game.h"
+#include "TextureHandler.h"
+#include <iostream>
+#include <SDL_image.h>
 
-Game::Game() {
-    init();
-}
+Game::Game(bool isServer, bool isClient) :
+        willQuit(false),
+        isServer(isServer),
+        isClient(isClient) {
 
-bool Game::init() {
-
-    if(SDL_Init(SDL_INIT_VIDEO) != 0){
-        std::cerr << "SDL Init: Failed " << std::endl << SDL_GetError() << std::endl;
-        return false;
-    } else {
-        std::cout << "SDL Init: Success" << std::endl;
+    if (isClient) {
+        init_graphics();
     }
 
-    gWindow = SDL_CreateWindow("Survivalist", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, (int) (WIDTH * SCALE),
-                               (int) (HEIGHT * SCALE), SDL_WINDOW_OPENGL);
-    if(gWindow == NULL){
+    main_loop();
+}
+
+bool Game::init_graphics() {
+
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        std::cerr << "SDL Init: Failed " << std::endl << SDL_GetError() << std::endl;
+        return false;
+    }
+
+    gWindow = SDL_CreateWindow("Survivalist", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, (int) (WIDTH*SCALE),
+                               (int) (HEIGHT*SCALE), SDL_WINDOW_OPENGL);
+    if (gWindow == nullptr) {
         std::cerr << "SDL Create Window: Failed " << std::endl << SDL_GetError() << std::endl;
         return false;
-    } else {
-        std::cout << "SDL Create Window: Success" << std::endl;
     }
 
     gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
 
-    if(gRenderer == NULL){
-        std::cerr << "SDL Create Renderer: Failed " << std::endl << SDL_GetError() << std::endl;
+    if (gRenderer == nullptr) {
+        std::cerr << "SDL Create Renderer: Failed" << std::endl << SDL_GetError() << std::endl;
         return false;
-    } else {
-        std::cout << "SDL Create Renderer: Success" << std::endl;
     }
 
-    SDL_GetRendererInfo(gRenderer, &gRendererInfo);
+    SDL_SetRenderDrawColor(gRenderer, 0xff, 0xff, 0xff, 0xff);
 
-
-
+    int imageFlags = IMG_INIT_PNG;
+    if (!(IMG_Init(imageFlags) & imageFlags)) {
+        std::cerr << "SDL Image Initialization: Failed" << std::endl << IMG_GetError() << std::endl;
+        return false;
+    }
 
     return true;
+}
+
+void Game::main_loop() {
+
+    SDL_Event e;
+    TextureHandler textureHandler(gRenderer);
+
+    SDL_Texture* playerTexture = textureHandler.getTexture("player");
+
+    while (!willQuit) {
+        while (SDL_PollEvent(&e)) {
+            if (e.type == SDL_QUIT) {
+                willQuit = true;
+            }
+        }
+
+
+        SDL_Rect src = {0, 0, 32, 32};
+        SDL_Rect dest = {100, 100, 512, 512};
+
+        SDL_RenderClear(gRenderer);
+        SDL_RenderCopy(gRenderer, playerTexture, &src, &dest);
+        SDL_RenderPresent(gRenderer);
+    }
 }
 
 Game::~Game() {
-
-}
-
-bool Game::initOpenGL() {
-
-    glShadeModel(GL_SMOOTH);
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClearDepth(1.0f);
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LEQUAL);
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
-    return true;
+    SDL_DestroyWindow(gWindow);
+    SDL_Quit();
 }
 
 
