@@ -68,9 +68,7 @@ namespace survivalist {
 
         SDL_RenderClear(gRenderer);
 
-//            SDL_RenderCopy(gRenderer, gTextureHandler.getTexture("player"), NULL, NULL);
-
-//        gWorld->render(gRenderer);
+        gGame->gWorld->render(gRenderer);
 
         SDL_RenderPresent(gRenderer);
     }

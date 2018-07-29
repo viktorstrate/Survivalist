@@ -10,7 +10,8 @@
 
 namespace survivalist {
 
-    Entity::Entity(const size &size, const vector &position) {}
+    Entity::Entity(const size &size, const vector &position)
+            : gSize(size), gPosition(position) {}
 
     void Entity::setTexture(std::string name, Game* game) {
 #ifdef GAME_CLIENT
@@ -22,10 +23,9 @@ namespace survivalist {
     void Entity::render(SDL_Renderer* renderer) {
 
         SDL_Rect src_rect = { 0, 0, gSize.width, gSize.height };
-        //SDL_Rect dst_rect = { gPosition.x, gPosition.y, gSize.width, gSize.height};
-        SDL_Rect dst_rect = { 100, 100, 512, 512};
+        SDL_Rect dst_rect = { gPosition.x, gPosition.y, gSize.width * Graphics::SCALE, gSize.height * Graphics::SCALE};
 
-        SDL_RenderCopy(renderer, gTexture, NULL, NULL);
+        SDL_RenderCopy(renderer, gTexture, &src_rect, &dst_rect);
     }
 
 #endif

@@ -19,11 +19,9 @@ namespace survivalist {
 
         void update();
 
-        const int WIDTH = 480;
-        const int HEIGHT = 360;
-        const float SCALE = 2.0f;
-
-
+        static const int WIDTH = 480;
+        static const int HEIGHT = 360;
+        static const int SCALE = 2;
 
         TextureHandler gTextureHandler = NULL;
 
