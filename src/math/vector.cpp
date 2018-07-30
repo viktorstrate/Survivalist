@@ -17,4 +17,11 @@ namespace survivalist {
         return lhs.x == rhs.x && lhs.y == rhs.y;
     }
 
+    vector operator-(const vector &lhs, const vector &rhs) {
+        return {
+            lhs.x - rhs.x,
+            lhs.y - rhs.y
+        };
+    }
+
 }

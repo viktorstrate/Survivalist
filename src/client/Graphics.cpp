@@ -12,7 +12,7 @@
 
 namespace survivalist {
 
-    Graphics::Graphics(Game* game) : gGame(game) {
+    Graphics::Graphics(Game* game) : gGame(game), gCamera({0, 0}, 2) {
         std::cout << "Initializing game..." << std::endl;
         init_graphics();
     }
@@ -24,8 +24,8 @@ namespace survivalist {
             return false;
         }
 
-        gWindow = SDL_CreateWindow("Survivalist", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, (int) (WIDTH*SCALE),
-                                   (int) (HEIGHT*SCALE), SDL_WINDOW_OPENGL);
+        gWindow = SDL_CreateWindow("Survivalist", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH,
+                                   HEIGHT, SDL_WINDOW_OPENGL);
         if (gWindow == nullptr) {
             std::cerr << "SDL Create Window: Failed " << std::endl << SDL_GetError() << std::endl;
             return false;
@@ -68,9 +68,13 @@ namespace survivalist {
 
         SDL_RenderClear(gRenderer);
 
-        gGame->gWorld->render(gRenderer);
+        gGame->gWorld->render(this);
 
         SDL_RenderPresent(gRenderer);
+    }
+
+    SDL_Renderer* Graphics::getRenderer() const {
+        return gRenderer;
     }
 
 }

@@ -7,6 +7,7 @@
 #include <SDL.h>
 #include "core/World.h"
 #include "TextureHandler.h"
+#include "Camera.h"
 
 namespace survivalist {
 
@@ -19,11 +20,13 @@ namespace survivalist {
 
         void update();
 
-        static const int WIDTH = 480;
-        static const int HEIGHT = 360;
-        static const int SCALE = 2;
+        SDL_Renderer* getRenderer() const;
+
+        static const int WIDTH = 720;
+        static const int HEIGHT = 480;
 
         TextureHandler gTextureHandler = NULL;
+        Camera gCamera;
 
     private:
 

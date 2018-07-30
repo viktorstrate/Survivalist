@@ -12,6 +12,9 @@ namespace survivalist {
     };
 
     vector operator+(const vector& lhs, const vector& rhs);
+
+    vector operator-(const vector& lhs, const vector& rhs);
+
     bool operator==(const vector& lhs, const vector& rhs);
 
 }

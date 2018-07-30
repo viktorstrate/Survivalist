@@ -15,6 +15,8 @@ namespace survivalist {
     public:
         Player(GameWorld* world, const vector &position);
 
+        void update(Uint32 dt) override;
+
     };
 
 }

@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <chrono>
+
 #include "client/Graphics.h"
 #include "core/World.h"
 
@@ -21,6 +23,11 @@ namespace survivalist {
 
 #ifdef GAME_CLIENT
         Graphics gGraphics;
+        Uint32 gPreviousUpdateTime;
+#endif
+
+#ifdef GAME_SERVER
+        std::chrono::time_point<std::chrono::high_resolution_clock> gPreviousUpdateTime;
 #endif
 
     protected:

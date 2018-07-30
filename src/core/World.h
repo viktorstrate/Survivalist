@@ -6,21 +6,16 @@
 #pragma once
 
 #include <SDL.h>
+#include "GameObject.h"
 
 namespace survivalist {
 
-    class World {
+    class Graphics;
+
+    class World : public GameObject {
     public:
 
         virtual ~World() = default;
-
-        virtual void update(float dt) = 0;
-
-#ifdef GAME_CLIENT
-        virtual void render(SDL_Renderer* renderer) = 0;
-
-        virtual void handleEvent(SDL_Event* event) = 0;
-#endif
 
     };
 

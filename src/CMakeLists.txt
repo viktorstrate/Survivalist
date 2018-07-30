@@ -12,12 +12,12 @@ set(SHARED_SOURCES
         math/size.h
 
         game/GameWorld.cpp game/GameWorld.h
-        game/Player.cpp game/Player.h )
+        game/Player.cpp game/Player.h core/GameObject.h)
 
 set(CLIENT_SOURCES
         client/Graphics.cpp client/Graphics.h
         client/TextureHandler.cpp client/TextureHandler.h
-        )
+        client/Camera.cpp client/Camera.h)
 
 set(SERVER_SOURCES)
 

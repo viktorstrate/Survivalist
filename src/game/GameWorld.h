@@ -17,10 +17,10 @@ namespace survivalist {
     public:
         explicit GameWorld(Game* gGame);
 
-        void update(float dt) override;
+        void update(Uint32 dt) override;
 
 #ifdef GAME_CLIENT
-        void render(SDL_Renderer* renderer) override;
+        void render(Graphics* graphics) override;
 
         void handleEvent(SDL_Event* event) override;
 #endif

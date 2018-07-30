@@ -20,12 +20,12 @@ namespace survivalist {
     }
 
 #ifdef GAME_CLIENT
-    void Entity::render(SDL_Renderer* renderer) {
+    void Entity::render(Graphics* graphics) {
 
         SDL_Rect src_rect = { 0, 0, gSize.width, gSize.height };
-        SDL_Rect dst_rect = { gPosition.x, gPosition.y, gSize.width * Graphics::SCALE, gSize.height * Graphics::SCALE};
+        SDL_Rect dst_rect = graphics->gCamera.drawDstRect(gPosition, gSize);
 
-        SDL_RenderCopy(renderer, gTexture, &src_rect, &dst_rect);
+        SDL_RenderCopy(graphics->getRenderer(), gTexture, &src_rect, &dst_rect);
     }
 
 #endif

@@ -11,18 +11,18 @@ namespace survivalist {
 
     }
 
-    void GameWorld::update(float dt) {
-
+    void GameWorld::update(Uint32 dt) {
+        player.update(dt);
     }
 
 #ifdef GAME_CLIENT
-    void GameWorld::render(SDL_Renderer* renderer) {
-        player.render(renderer);
+    void GameWorld::render(Graphics* graphics) {
+        player.render(graphics);
     }
 
 
     void GameWorld::handleEvent(SDL_Event* event) {
-
+        player.handleEvent(event);
     }
 #endif
 

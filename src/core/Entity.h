@@ -9,21 +9,22 @@
 #include <string>
 
 #include "core/Game.h"
+#include "core/GameObject.h"
 #include "math/vector.h"
 #include "math/size.h"
 
 namespace survivalist {
 
-    class Entity {
+    class Entity : public GameObject {
     public:
         Entity(const size &size, const vector &position);
 
         void setTexture(std::string name, Game* game);
 
-        virtual void update(float dt) {}
+        void update(Uint32 dt) override {}
 
 #ifdef GAME_CLIENT
-        void render(SDL_Renderer* renderer);
+        void render(Graphics* graphics) override;
 #endif
 
     protected:
