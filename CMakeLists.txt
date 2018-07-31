@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.10)
 project(Survivalist)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
@@ -14,10 +14,10 @@ include_directories(${SDL2_IMAGE_INCLUDE_DIR})
 
 
 # Find enet
-find_package(ENET)
+find_package(ENET REQUIRED)
 
-include_directories(${ENET_INCLUDE_DIRS})
-link_libraries(${ENET_LIBRARIES})
+include_directories(${ENet_INCLUDE_DIRS})
+link_libraries(${ENet_LIBRARY})
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
 

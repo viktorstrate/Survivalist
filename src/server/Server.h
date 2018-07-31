@@ -6,6 +6,7 @@
 #pragma once
 
 #include <chrono>
+#include <enet/enet.h>
 
 #include "client/Graphics.h"
 #include "core/World.h"
@@ -21,14 +22,10 @@ namespace survivalist {
         bool willQuit;
         World* gWorld;
 
-#ifdef GAME_CLIENT
-        Graphics gGraphics;
-        Uint32 gPreviousUpdateTime;
-#endif
-
-#ifdef GAME_SERVER
         std::chrono::time_point<std::chrono::high_resolution_clock> gPreviousUpdateTime;
-#endif
+
+        ENetAddress gAddress;
+        ENetHost* gHost;
 
     protected:
         void gameLoop();

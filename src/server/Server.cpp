@@ -4,42 +4,71 @@
 
 #include <chrono>
 #include <iostream>
+#include <thread>
 
 #include "Server.h"
 #include "game/GameWorld.h"
 
+using namespace std::literals::chrono_literals;
+
 namespace survivalist {
 
     void Server::gameLoop() {
+
+        std::cout << "Main game loop started" << std::endl;
+
+        Uint32 deltaTime = 0;
+
         while (!willQuit) {
 
+//            std::chrono::time_point<std::chrono::high_resolution_clock> currentUpdateTime;
 
-            Uint32 deltaTime;
             auto currentUpdateTime = std::chrono::high_resolution_clock::now();
 
-            do {
+            if (gPreviousUpdateTime.time_since_epoch().count() == 0) {
+                std::cout << "First update" << std::endl;
+                gPreviousUpdateTime = currentUpdateTime;
+            }
 
-                currentUpdateTime = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<float> difference = currentUpdateTime - gPreviousUpdateTime;
 
-                if (gPreviousUpdateTime.time_since_epoch().count() == 0) {
-                    gPreviousUpdateTime = currentUpdateTime;
-                }
 
-                std::chrono::duration<float> difference = currentUpdateTime - gPreviousUpdateTime;
+            std::this_thread::sleep_for(16ms - difference);
 
-                deltaTime = static_cast<Uint32>(difference.count()*1000.f);
-
-            } while (deltaTime < 16);
+            difference = std::chrono::high_resolution_clock::now() - gPreviousUpdateTime;
+            deltaTime = static_cast<Uint32>(difference.count()*1000.f);
 
             gPreviousUpdateTime = currentUpdateTime;
 
+
             gWorld->update(deltaTime);
+
+            ENetEvent event;
+
+            while (enet_host_service(gHost, &event, 10000) > 0) {
+                std::cout << "Received ENet event: " << event.type << std::endl;
+            }
 
         }
     }
 
-    Server::Server() {
+    Server::Server() : gAddress(), gHost() {
         willQuit = false;
+
+        if (enet_initialize() != 0) {
+            std::cerr << "ERROR: Could not initialize ENet" << std::endl;
+            return;
+        }
+
+        gAddress.host = ENET_HOST_ANY;
+        gAddress.port = 1235;
+
+        gHost = enet_host_create(&gAddress, 32, 2, 0, 0);
+
+        if (gHost == nullptr) {
+            std::cerr << "ERROR: Could not create server host" << std::endl;
+            return;
+        }
 
         gWorld = new GameWorld();
 
@@ -47,6 +76,8 @@ namespace survivalist {
     }
 
     Server::~Server() {
+        enet_deinitialize();
+        enet_host_destroy(gHost);
         delete gWorld;
     }
 

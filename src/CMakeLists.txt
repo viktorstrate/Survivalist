@@ -29,8 +29,7 @@ add_executable(${CLIENT_TARGET} ${SHARED_SOURCES} ${CLIENT_SOURCES})
 
 target_compile_definitions(${CLIENT_TARGET} PRIVATE GAME_CLIENT=1)
 
-target_link_libraries(${CLIENT_TARGET} ${SDL2_LIBRARY})
-target_link_libraries(${CLIENT_TARGET} ${SDL2_IMAGE_LIBRARY})
+target_link_libraries(${CLIENT_TARGET} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY})
 
 # Server Target
 

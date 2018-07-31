@@ -6,6 +6,7 @@
 #pragma once
 
 #include <chrono>
+#include <enet/enet.h>
 
 #include "client/Graphics.h"
 #include "core/World.h"
@@ -23,6 +24,10 @@ namespace survivalist {
 
         Graphics gGraphics;
         Uint32 gPreviousUpdateTime;
+
+        ENetAddress gAddress;
+        ENetPeer* gPeer;
+        ENetHost* gClient;
 
     protected:
         void gameLoop();

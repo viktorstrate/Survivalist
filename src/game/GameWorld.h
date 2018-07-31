@@ -20,6 +20,8 @@ namespace survivalist {
         explicit GameWorld();
 #endif
 
+        void init();
+
         void update(Uint32 dt) override;
 
 #ifdef GAME_CLIENT
@@ -33,7 +35,7 @@ namespace survivalist {
 #endif
 
     private:
-        Player player;
+        std::vector<Player> players;
 
     };
 
