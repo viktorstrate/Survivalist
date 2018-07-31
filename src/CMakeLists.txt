@@ -5,21 +5,21 @@ set(SHARED_SOURCES
         main.cpp
 
         core/Entity.cpp core/Entity.h
-        core/Game.cpp core/Game.h
         core/World.h
 
-        math/vector.h math/vector.cpp
-        math/size.h
+        math/vector.cpp math/vector.h
 
         game/GameWorld.cpp game/GameWorld.h
-        game/Player.cpp game/Player.h core/GameObject.h)
+        game/Player.cpp game/Player.h)
 
 set(CLIENT_SOURCES
         client/Graphics.cpp client/Graphics.h
         client/TextureHandler.cpp client/TextureHandler.h
-        client/Camera.cpp client/Camera.h)
+        client/Camera.cpp client/Camera.h
+        client/Client.cpp client/Client.h)
 
-set(SERVER_SOURCES)
+set(SERVER_SOURCES
+        server/Server.cpp server/Server.h)
 
 # Client Target
 

@@ -11,7 +11,7 @@ namespace survivalist {
 
     Player::Player(GameWorld* world, const vector &position)
             : Entity({32, 32}, position) {
-        setTexture("player", world->gGame);
+        setTexture("player", world);
     }
 
     void Player::update(Uint32 dt) {

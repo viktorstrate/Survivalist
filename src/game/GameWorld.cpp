@@ -6,16 +6,19 @@
 
 namespace survivalist {
 
-    GameWorld::GameWorld(Game* game)
-            : gGame(game), player(Player(this, {128, 128})) {
+#ifdef GAME_SERVER
+    GameWorld::GameWorld()
+            : player(Player(this, {128, 128})) {
 
     }
+#endif
 
     void GameWorld::update(Uint32 dt) {
         player.update(dt);
     }
 
 #ifdef GAME_CLIENT
+
     void GameWorld::render(Graphics* graphics) {
         player.render(graphics);
     }
@@ -24,6 +27,9 @@ namespace survivalist {
     void GameWorld::handleEvent(SDL_Event* event) {
         player.handleEvent(event);
     }
+
+    GameWorld::GameWorld(Graphics* graphics) : World(graphics), player(Player(this, {128, 128})) {}
+
 #endif
 
 }

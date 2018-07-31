@@ -7,7 +7,7 @@
 
 #include <vector>
 
-#include "core/Game.h"
+#include "client/Client.h"
 #include "core/World.h"
 #include "game/Player.h"
 
@@ -15,17 +15,22 @@ namespace survivalist {
 
     class GameWorld : public World {
     public:
-        explicit GameWorld(Game* gGame);
+
+#ifdef GAME_SERVER
+        explicit GameWorld();
+#endif
 
         void update(Uint32 dt) override;
 
 #ifdef GAME_CLIENT
+
+        explicit GameWorld(Graphics* graphics);
+
         void render(Graphics* graphics) override;
 
         void handleEvent(SDL_Event* event) override;
-#endif
 
-        Game* gGame;
+#endif
 
     private:
         Player player;

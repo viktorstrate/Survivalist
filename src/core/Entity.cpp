@@ -4,18 +4,19 @@
 
 #include <iostream>
 #include <client/Graphics.h>
+#include <game/GameWorld.h>
 #include "Entity.h"
 #include "math/vector.h"
-#include "Game.h"
+#include "client/Client.h"
 
 namespace survivalist {
 
     Entity::Entity(const size &size, const vector &position)
             : gSize(size), gPosition(position) {}
 
-    void Entity::setTexture(std::string name, Game* game) {
+    void Entity::setTexture(std::string name, World* world) {
 #ifdef GAME_CLIENT
-        gTexture = game->gGraphics.gTextureHandler.getTexture(name);
+        gTexture = world->gGraphics->gTextureHandler.getTexture(name);
 #endif
     }
 

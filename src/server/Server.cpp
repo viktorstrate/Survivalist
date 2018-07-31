@@ -5,22 +5,14 @@
 #include <chrono>
 #include <iostream>
 
-#include "Game.h"
+#include "Server.h"
 #include "game/GameWorld.h"
 
 namespace survivalist {
 
-    void Game::gameLoop() {
+    void Server::gameLoop() {
         while (!willQuit) {
 
-#ifdef GAME_CLIENT
-            gGraphics.update();
-
-            Uint32 currentUpdateTime = SDL_GetTicks();
-            Uint32 deltaTime = currentUpdateTime - gPreviousUpdateTime;
-            gPreviousUpdateTime = currentUpdateTime;
-
-#elif defined(GAME_SERVER)
 
             Uint32 deltaTime;
             auto currentUpdateTime = std::chrono::high_resolution_clock::now();
@@ -41,26 +33,20 @@ namespace survivalist {
 
             gPreviousUpdateTime = currentUpdateTime;
 
-#endif
-
             gWorld->update(deltaTime);
 
         }
     }
 
-    Game::Game()
-#ifdef GAME_CLIENT
-    : gGraphics(this)
-#endif
-    {
+    Server::Server() {
         willQuit = false;
 
-        gWorld = new GameWorld(this);
+        gWorld = new GameWorld();
 
         gameLoop();
     }
 
-    Game::~Game() {
+    Server::~Server() {
         delete gWorld;
     }
 

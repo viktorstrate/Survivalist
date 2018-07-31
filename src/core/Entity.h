@@ -8,7 +8,7 @@
 #include <SDL.h>
 #include <string>
 
-#include "core/Game.h"
+#include "client/Client.h"
 #include "core/GameObject.h"
 #include "math/vector.h"
 #include "math/size.h"
@@ -19,7 +19,7 @@ namespace survivalist {
     public:
         Entity(const size &size, const vector &position);
 
-        void setTexture(std::string name, Game* game);
+        void setTexture(std::string name, World* world);
 
         void update(Uint32 dt) override {}
 

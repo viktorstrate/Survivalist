@@ -11,11 +11,11 @@
 
 namespace survivalist {
 
-    class Game;
+    class Client;
 
     class Graphics {
     public:
-        explicit Graphics(Game* game);
+        explicit Graphics(Client* client);
         ~Graphics();
 
         void update();
@@ -25,14 +25,14 @@ namespace survivalist {
         static const int WIDTH = 720;
         static const int HEIGHT = 480;
 
-        TextureHandler gTextureHandler = NULL;
+        TextureHandler gTextureHandler;
         Camera gCamera;
 
     private:
 
         bool init_graphics();
 
-        Game* gGame;
+        Client* gClient;
 
         SDL_Window* gWindow;
         SDL_Renderer* gRenderer;

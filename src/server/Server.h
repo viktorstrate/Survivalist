@@ -12,11 +12,11 @@
 
 namespace survivalist {
 
-    class Game {
+    class Server {
 
     public:
-        Game();
-        ~Game();
+        Server();
+        ~Server();
 
         bool willQuit;
         World* gWorld;

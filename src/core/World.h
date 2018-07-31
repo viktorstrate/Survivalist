@@ -17,6 +17,13 @@ namespace survivalist {
 
         virtual ~World() = default;
 
+#ifdef GAME_CLIENT
+
+        World(Graphics* gGraphics) : gGraphics(gGraphics) {}
+
+        Graphics* gGraphics;
+#endif
+
     };
 
 }

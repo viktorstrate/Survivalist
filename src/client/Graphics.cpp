@@ -5,14 +5,14 @@
 #include <iostream>
 #include <SDL_image.h>
 
-#include "core/Game.h"
+#include "Client.h"
 #include "client/Graphics.h"
 #include "client/TextureHandler.h"
 #include "game/GameWorld.h"
 
 namespace survivalist {
 
-    Graphics::Graphics(Game* game) : gGame(game), gCamera({0, 0}, 2) {
+    Graphics::Graphics(Client* client) : gClient(client), gCamera({0, 0}, 2) {
         std::cout << "Initializing game..." << std::endl;
         init_graphics();
     }
@@ -62,13 +62,13 @@ namespace survivalist {
         SDL_Event e;
         while (SDL_PollEvent(&e)) {
             if (e.type == SDL_QUIT) {
-                gGame->willQuit = true;
+                gClient->willQuit = true;
             }
         }
 
         SDL_RenderClear(gRenderer);
 
-        gGame->gWorld->render(this);
+        gClient->gWorld->render(this);
 
         SDL_RenderPresent(gRenderer);
     }

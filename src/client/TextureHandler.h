@@ -13,12 +13,13 @@ namespace survivalist {
 
     class TextureHandler {
     public:
-        TextureHandler(SDL_Renderer* renderer);
+        explicit TextureHandler(SDL_Renderer* renderer);
+        TextureHandler() = default;
 
         SDL_Texture* getTexture(std::string name);
 
     private:
-        SDL_Renderer* gRenderer;
+        SDL_Renderer* gRenderer = nullptr;
         std::unordered_map<std::string, SDL_Texture*> gTextures;
 
     };
