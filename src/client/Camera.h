@@ -16,9 +16,9 @@ namespace survivalist {
     public:
         Camera(const vector &position, float scale);
 
-        vector worldToScreenSpace(vector worldSpace);
+        vector worldToScreenSpace(const vector* worldSpace);
 
-        SDL_Rect drawDstRect(vector worldSpace, size srcSize);
+        SDL_Rect drawDstRect(const vector* worldSpace, const size* srcSize);
 
     private:
         vector gPosition;

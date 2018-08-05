@@ -15,11 +15,13 @@
 
 namespace survivalist {
 
+    class GameWorld;
+
     class Entity : public GameObject {
     public:
         Entity(const size &size, const vector &position);
 
-        void setTexture(std::string name, World* world);
+        void setTexture(std::string name, GameWorld* world);
 
         void update(Uint32 dt) override {}
 

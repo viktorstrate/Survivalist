@@ -9,9 +9,12 @@
 #include <enet/enet.h>
 
 #include "client/Graphics.h"
-#include "core/World.h"
+#include "InputHandler.h"
+#include <game/GameWorld.h>
 
 namespace survivalist {
+
+    class GameWorld;
 
     class Client {
 
@@ -19,8 +22,10 @@ namespace survivalist {
         Client();
         ~Client();
 
+        bool connectToServer(const char* host, unsigned short port);
+
         bool willQuit;
-        World* gWorld;
+        GameWorld* gWorld;
 
         Graphics gGraphics;
         Uint32 gPreviousUpdateTime;

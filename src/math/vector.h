@@ -8,7 +8,15 @@
 namespace survivalist {
 
     struct vector {
-        int x, y;
+        double x, y;
+
+        int getIntX() {
+            return static_cast<int>(x);
+        }
+
+        int getIntY() {
+            return static_cast<int>(y);
+        }
     };
 
     vector operator+(const vector& lhs, const vector& rhs);

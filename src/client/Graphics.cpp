@@ -61,9 +61,14 @@ namespace survivalist {
     void Graphics::update() {
         SDL_Event e;
         while (SDL_PollEvent(&e)) {
+
             if (e.type == SDL_QUIT) {
                 gClient->willQuit = true;
             }
+
+            gInputHandler.handleEvent(&e);
+            gClient->gWorld->handleEvent(&e);
+
         }
 
         SDL_RenderClear(gRenderer);

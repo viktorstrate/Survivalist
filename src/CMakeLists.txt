@@ -5,7 +5,6 @@ set(SHARED_SOURCES
         main.cpp
 
         core/Entity.cpp core/Entity.h
-        core/World.h
 
         math/vector.cpp math/vector.h
 
@@ -16,7 +15,7 @@ set(CLIENT_SOURCES
         client/Graphics.cpp client/Graphics.h
         client/TextureHandler.cpp client/TextureHandler.h
         client/Camera.cpp client/Camera.h
-        client/Client.cpp client/Client.h)
+        client/Client.cpp client/Client.h client/InputHandler.cpp client/InputHandler.h)
 
 set(SERVER_SOURCES
         server/Server.cpp server/Server.h)

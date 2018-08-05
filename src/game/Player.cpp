@@ -9,12 +9,23 @@
 namespace survivalist {
 
 
-    Player::Player(GameWorld* world, const vector &position)
-            : Entity({32, 32}, position) {
+    Player::Player(GameWorld* world, const vector &position, bool locallyControlled)
+            : Entity({32, 32}, position), gLocallyControlled(locallyControlled), gWorld(world) {
         setTexture("player", world);
     }
 
     void Player::update(Uint32 dt) {
-        std::cout << "Player update delta time: " << dt << std::endl;
+
+        InputHandler* inputHandler = &gWorld->gGraphics->gInputHandler;
+
+        vector deltaSpeed = {
+            inputHandler->getAxis("horizontal"), inputHandler->getAxis("vertical")
+        };
+
+        gPosition = gPosition + deltaSpeed;
+    }
+
+    void Player::handleEvent(SDL_Event* event) {
+
     }
 }

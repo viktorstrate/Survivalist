@@ -13,9 +13,21 @@ namespace survivalist {
 
     class Player : public Entity {
     public:
-        Player(GameWorld* world, const vector &position);
+        Player(GameWorld* world, const vector &position, bool locallyControlled);
 
         void update(Uint32 dt) override;
+
+        void handleEvent(SDL_Event* event) override;
+
+    protected:
+
+        double speed = 100;
+
+        bool gLocallyControlled;
+
+    private:
+
+        GameWorld* gWorld;
 
     };
 

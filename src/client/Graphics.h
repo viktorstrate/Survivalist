@@ -5,9 +5,9 @@
 #pragma once
 
 #include <SDL.h>
-#include "core/World.h"
 #include "TextureHandler.h"
 #include "Camera.h"
+#include "InputHandler.h"
 
 namespace survivalist {
 
@@ -26,6 +26,8 @@ namespace survivalist {
         static const int HEIGHT = 480;
 
         TextureHandler gTextureHandler;
+        InputHandler gInputHandler;
+
         Camera gCamera;
 
     private:

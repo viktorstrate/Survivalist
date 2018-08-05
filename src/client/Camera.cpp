@@ -8,18 +8,18 @@ namespace survivalist {
 
     Camera::Camera(const vector &position, float scale) : gPosition(position), gScale(scale) {}
 
-    vector Camera::worldToScreenSpace(survivalist::vector worldSpace) {
+    vector Camera::worldToScreenSpace(const vector* worldSpace) {
 
-        return worldSpace - gPosition;
+        return *worldSpace - gPosition;
 
     }
 
-    SDL_Rect Camera::drawDstRect(vector worldSpace, size srcSize) {
+    SDL_Rect Camera::drawDstRect(const vector* worldSpace, const size* srcSize) {
         vector screenPosition = worldToScreenSpace(worldSpace);
 
         return {
-                screenPosition.x, screenPosition.y,
-                static_cast<int>(srcSize.width*gScale), static_cast<int>(srcSize.height*gScale)
+                screenPosition.getIntX(), screenPosition.getIntY(),
+                static_cast<int>(srcSize->width * gScale), static_cast<int>(srcSize->height * gScale)
         };
     }
 

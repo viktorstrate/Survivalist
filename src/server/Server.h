@@ -7,9 +7,9 @@
 
 #include <chrono>
 #include <enet/enet.h>
+#include <game/GameWorld.h>
 
 #include "client/Graphics.h"
-#include "core/World.h"
 
 namespace survivalist {
 
@@ -20,7 +20,7 @@ namespace survivalist {
         ~Server();
 
         bool willQuit;
-        World* gWorld;
+        GameWorld* gWorld;
 
         std::chrono::time_point<std::chrono::high_resolution_clock> gPreviousUpdateTime;
 

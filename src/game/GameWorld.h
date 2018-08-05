@@ -6,14 +6,18 @@
 #pragma once
 
 #include <vector>
-
-#include "client/Client.h"
-#include "core/World.h"
-#include "game/Player.h"
+#include <SDL.h>
+#include "Player.h"
 
 namespace survivalist {
 
-    class GameWorld : public World {
+
+#ifdef GAME_CLIENT
+    class Graphics;
+    class Player;
+#endif
+
+    class GameWorld {
     public:
 
 #ifdef GAME_SERVER
@@ -22,20 +26,24 @@ namespace survivalist {
 
         void init();
 
-        void update(Uint32 dt) override;
+        void update(unsigned int dt);
+
+        void spawnPlayer(Player* player);
 
 #ifdef GAME_CLIENT
 
         explicit GameWorld(Graphics* graphics);
 
-        void render(Graphics* graphics) override;
+        void render(Graphics* graphics);
 
-        void handleEvent(SDL_Event* event) override;
+        void handleEvent(SDL_Event* event);
+
+        Graphics* gGraphics;
 
 #endif
 
     private:
-        std::vector<Player> players;
+        std::vector<Player*> gPlayers;
 
     };
 

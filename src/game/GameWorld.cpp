@@ -3,18 +3,13 @@
 //
 
 #include "GameWorld.h"
+#include "game/Player.h"
 
 namespace survivalist {
 
-#ifdef GAME_SERVER
-    GameWorld::GameWorld() {
-        init();
-    }
-#endif
-
-    void GameWorld::update(Uint32 dt) {
-        for (Player player : players) {
-            player.update(dt);
+    void GameWorld::update(unsigned int dt) {
+        for (Player* player : gPlayers) {
+            player->update(dt);
         }
     }
 
@@ -22,24 +17,36 @@ namespace survivalist {
 
     }
 
+    void GameWorld::spawnPlayer(Player* player) {
+        gPlayers.push_back(player);
+    }
+
+#ifdef GAME_SERVER
+    GameWorld::GameWorld() {
+        init();
+    }
+#endif
+
 #ifdef GAME_CLIENT
 
     void GameWorld::render(Graphics* graphics) {
-        for (Player player : players) {
-            player.render(graphics);
+        for (Player* player : gPlayers) {
+            player->render(graphics);
         }
     }
 
 
     void GameWorld::handleEvent(SDL_Event* event) {
-        for (Player player : players) {
-            player.handleEvent(event);
+        for (Player* player : gPlayers) {
+            player->handleEvent(event);
         }
     }
 
-    GameWorld::GameWorld(Graphics* graphics) : World(graphics) {
+    GameWorld::GameWorld(Graphics* graphics) : gGraphics(graphics) {
         init();
     }
+
+
 
 #endif
 
