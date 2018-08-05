@@ -18,7 +18,7 @@ namespace survivalist {
         vector screenPosition = worldToScreenSpace(worldSpace);
 
         return {
-                screenPosition.getIntX(), screenPosition.getIntY(),
+                static_cast<int>(screenPosition.getIntX()*gScale), static_cast<int>(screenPosition.getIntY()*gScale),
                 static_cast<int>(srcSize->width * gScale), static_cast<int>(srcSize->height * gScale)
         };
     }

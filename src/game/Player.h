@@ -21,7 +21,7 @@ namespace survivalist {
 
     protected:
 
-        double speed = 100;
+        double gSpeed = 100;
 
         bool gLocallyControlled;
 

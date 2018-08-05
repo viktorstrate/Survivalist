@@ -22,6 +22,8 @@ namespace survivalist {
             inputHandler->getAxis("horizontal"), inputHandler->getAxis("vertical")
         };
 
+        deltaSpeed = deltaSpeed * dt * gSpeed / 1000;
+
         gPosition = gPosition + deltaSpeed;
     }
 
