@@ -18,6 +18,8 @@ namespace survivalist {
         int getIntY() const {
             return static_cast<int>(y);
         }
+
+        static vector lerp(const vector &a, const vector &b, double amount);
     };
 
     vector operator*(const vector& lhs, const int& rhs);

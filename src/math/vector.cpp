@@ -2,7 +2,6 @@
 // Created by Viktor Hundahl Strate on 29/07/2018.
 //
 
-#include "math/vector.h"
 #include "vector.h"
 
 namespace survivalist {
@@ -43,4 +42,10 @@ namespace survivalist {
         return os << vector.x << ", " << vector.y;
     }
 
+    vector vector::lerp(const vector &a, const vector &b, double amount) {
+        return {
+            (1 - amount) * a.x + amount * b.x,
+            (1 - amount) * a.y + amount * b.y
+        };
+    }
 }

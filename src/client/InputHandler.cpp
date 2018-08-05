@@ -24,8 +24,6 @@ namespace survivalist {
     void InputHandler::handleEvent(SDL_Event* event) {
         if (event->type == SDL_KEYDOWN) {
 
-            std::cout << "Key press down" << std::endl;
-
             switch (event->key.keysym.sym) {
                 case SDLK_w:
                     gAxisStates["vertical"] = -1.f;
@@ -46,8 +44,6 @@ namespace survivalist {
         }
 
         if (event->type == SDL_KEYUP) {
-
-            std::cout << "Key press up" << std::endl;
 
             switch (event->key.keysym.sym) {
                 case SDLK_w:

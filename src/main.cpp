@@ -1,5 +1,6 @@
 
-#include <server/Server.h>
+#include <cstdint>
+#include "server/Server.h"
 #include "client/Client.h"
 
 using namespace survivalist;
