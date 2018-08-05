@@ -11,7 +11,7 @@
 
 using namespace survivalist;
 
-int main() {
+int main(int argc, char** argv) {
 
 #ifdef GAME_CLIENT
     Client game;

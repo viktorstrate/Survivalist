@@ -17,7 +17,9 @@ namespace survivalist {
 
         void update(Uint32 dt) override;
 
+#ifdef GAME_CLIENT
         void handleEvent(SDL_Event* event) override;
+#endif
 
     protected:
 

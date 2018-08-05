@@ -7,8 +7,8 @@
 
 #include <chrono>
 #include <enet/enet.h>
-#include <game/GameWorld.h>
 
+#include "game/GameWorld.h"
 #include "client/Graphics.h"
 
 namespace survivalist {

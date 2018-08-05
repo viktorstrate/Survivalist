@@ -18,7 +18,7 @@ namespace survivalist {
     }
 
     void Player::update(Uint32 dt) {
-
+#ifdef GAME_CLIENT
         InputHandler* inputHandler = &gWorld->gGraphics->gInputHandler;
 
         vector deltaSpeed = {
@@ -28,9 +28,12 @@ namespace survivalist {
         deltaSpeed = deltaSpeed * dt * gSpeed / 1000;
 
         gPosition = gPosition + deltaSpeed;
+#endif
     }
 
+#ifdef GAME_CLIENT
     void Player::handleEvent(SDL_Event* event) {
 
     }
+#endif
 }
