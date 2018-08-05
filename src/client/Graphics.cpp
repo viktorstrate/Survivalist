@@ -12,7 +12,7 @@
 
 namespace survivalist {
 
-    Graphics::Graphics(Client* client) : gClient(client), gCamera({0, 0}, 2) {
+    Graphics::Graphics(Client* client) : gClient(client), gCamera({0, 0}, 2, this) {
         std::cout << "Initializing game..." << std::endl;
         init_graphics();
     }
@@ -58,7 +58,7 @@ namespace survivalist {
         SDL_Quit();
     }
 
-    void Graphics::update() {
+    void Graphics::update(unsigned int dt) {
         SDL_Event e;
         while (SDL_PollEvent(&e)) {
 
@@ -68,11 +68,11 @@ namespace survivalist {
 
             gInputHandler.handleEvent(&e);
             gClient->gWorld->handleEvent(&e);
-
         }
 
         SDL_RenderClear(gRenderer);
 
+        gCamera.update(dt);
         gClient->gWorld->render(this);
 
         SDL_RenderPresent(gRenderer);

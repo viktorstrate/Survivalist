@@ -18,7 +18,7 @@ namespace survivalist {
         explicit Graphics(Client* client);
         ~Graphics();
 
-        void update();
+        void update(unsigned int dt);
 
         SDL_Renderer* getRenderer() const;
 

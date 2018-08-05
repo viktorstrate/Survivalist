@@ -28,10 +28,14 @@ namespace survivalist {
         void render(Graphics* graphics) override;
 #endif
 
-    protected:
+        const size& getSize() const;
+
         vector gPosition;
+
+    protected:
         size gSize;
 
+    protected:
 #ifdef GAME_CLIENT
         SDL_Texture* gTexture = nullptr;
 #endif

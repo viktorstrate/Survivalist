@@ -19,16 +19,22 @@ namespace survivalist {
 
             // Calculate delta time and sleep
 
-            std::this_thread::sleep_for(8ms - std::chrono::milliseconds(SDL_GetTicks()));
+            Uint32 sleepTime = SDL_GetTicks() - gPreviousUpdateTime;
+            std::this_thread::sleep_for(8ms - std::chrono::milliseconds(sleepTime));
 
             Uint32 currentUpdateTime = SDL_GetTicks();
+
+            if (gPreviousUpdateTime == 0) {
+                std::cout << "First update" << std::endl;
+                gPreviousUpdateTime = currentUpdateTime;
+            }
 
             Uint32 deltaTime = currentUpdateTime - gPreviousUpdateTime;
             gPreviousUpdateTime = currentUpdateTime;
 
             // Rendering and updating
 
-            gGraphics.update();
+            gGraphics.update(deltaTime);
             gWorld->update(deltaTime);
 
         }
@@ -43,6 +49,7 @@ namespace survivalist {
         Player* mainPlayer = new Player(gWorld, {127, 127}, true);
 
         gWorld->spawnPlayer(mainPlayer);
+        gGraphics.gCamera.gFollowingEntity = mainPlayer;
 
         gameLoop();
 

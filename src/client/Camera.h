@@ -13,18 +13,25 @@
 
 namespace survivalist {
 
+    class Graphics;
+
     class Camera {
 
     public:
-        Camera(const vector &position, float scale);
+        Camera(const vector &position, float scale, Graphics* graphics);
 
         vector worldToScreenSpace(const vector* worldSpace);
 
         SDL_Rect drawDstRect(const vector* worldSpace, const size* srcSize);
 
+        void update(unsigned int dt);
+
+        Entity* gFollowingEntity = nullptr;
+
     private:
         vector gPosition;
         float gScale;
+        Graphics* gGraphics;
     };
 
 }

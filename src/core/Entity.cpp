@@ -20,6 +20,10 @@ namespace survivalist {
 #endif
     }
 
+    const size &Entity::getSize() const {
+        return gSize;
+    }
+
 #ifdef GAME_CLIENT
     void Entity::render(Graphics* graphics) {
 

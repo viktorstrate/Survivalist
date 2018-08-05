@@ -25,7 +25,7 @@ namespace survivalist {
         GameWorld* gWorld;
 
         Graphics gGraphics;
-        Uint32 gPreviousUpdateTime;
+        Uint32 gPreviousUpdateTime = 0;
 
         ENetAddress gAddress;
         ENetPeer* gPeer;
