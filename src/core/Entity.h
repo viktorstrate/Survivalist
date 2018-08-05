@@ -8,7 +8,6 @@
 #include <SDL.h>
 #include <string>
 
-#include "client/Client.h"
 #include "core/GameObject.h"
 #include "math/vector.h"
 #include "math/size.h"

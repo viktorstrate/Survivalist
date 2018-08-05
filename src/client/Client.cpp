@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "Client.h"
+#include "game/Player.h"
 #include "game/GameWorld.h"
 
 using namespace std::literals::chrono_literals;

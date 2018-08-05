@@ -3,7 +3,10 @@
 //
 
 #include <iostream>
-#include "game/Player.h"
+#include "Player.h"
+
+#include "client/Graphics.h"
+#include "client/InputHandler.h"
 #include "game/GameWorld.h"
 
 namespace survivalist {

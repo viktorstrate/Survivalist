@@ -5,9 +5,11 @@
 
 #pragma once
 
+#include <SDL_rect.h>
+
 #include <math/vector.h>
 #include <math/size.h>
-#include <SDL_rect.h>
+#include <core/Entity.h>
 
 namespace survivalist {
 

@@ -1,7 +1,13 @@
 
 #include <cstdint>
-#include "server/Server.h"
+
+#ifdef GAME_CLIENT
 #include "client/Client.h"
+#endif
+
+#ifdef GAME_SERVER
+#include "server/Server.h"
+#endif
 
 using namespace survivalist;
 

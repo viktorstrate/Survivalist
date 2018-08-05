@@ -2,10 +2,10 @@
 // Created by Viktor Hundahl Strate on 29/07/2018.
 //
 
+#include "Entity.h"
 #include <iostream>
 #include <client/Graphics.h>
 #include <game/GameWorld.h>
-#include "Entity.h"
 #include "math/vector.h"
 #include "client/Client.h"
 

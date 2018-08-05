@@ -7,14 +7,13 @@
 
 #include <vector>
 #include <SDL.h>
-#include "Player.h"
 
 namespace survivalist {
 
+    class Player;
 
 #ifdef GAME_CLIENT
     class Graphics;
-    class Player;
 #endif
 
     class GameWorld {

@@ -2,7 +2,6 @@
 // Created by Viktor Hundahl Strate on 29/07/2018.
 //
 
-
 #pragma once
 
 #include <chrono>
@@ -10,11 +9,9 @@
 
 #include "client/Graphics.h"
 #include "InputHandler.h"
-#include <game/GameWorld.h>
+#include "game/GameWorld.h"
 
 namespace survivalist {
-
-    class GameWorld;
 
     class Client {
 
