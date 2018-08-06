@@ -14,7 +14,11 @@ namespace survivalist {
     }
 
     void GameWorld::init() {
+        Player* mainPlayer = new Player(this, {127, 127}, true);
 
+
+        spawnPlayer(mainPlayer);
+        gGraphics->gCamera.gFollowingEntity = mainPlayer;
     }
 
     void GameWorld::spawnPlayer(Player* player) {
@@ -42,10 +46,15 @@ namespace survivalist {
         }
     }
 
-    GameWorld::GameWorld(Graphics* graphics) : gGraphics(graphics) {
+    GameWorld::GameWorld(Graphics* graphics) : World(graphics) {
         init();
     }
 
+    GameWorld::~GameWorld() {
+        for (Player* player : gPlayers) {
+            delete player;
+        }
+    }
 
 
 #endif

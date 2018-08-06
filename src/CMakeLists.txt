@@ -10,14 +10,14 @@ set(SHARED_SOURCES
         math/vector.cpp math/vector.h
 
         game/GameWorld.cpp game/GameWorld.h
-        game/Player.cpp game/Player.h)
+        game/Player.cpp game/Player.h core/World.h)
 
 set(CLIENT_SOURCES
         client/Graphics.cpp client/Graphics.h
         client/TextureHandler.cpp client/TextureHandler.h
         client/Camera.cpp client/Camera.h
         client/Client.cpp client/Client.h
-        client/InputHandler.cpp client/InputHandler.h)
+        client/InputHandler.cpp client/InputHandler.h client/hud/Clickable.h client/hud/Clickable.cpp client/hud/TextButton.cpp client/hud/TextButton.h client/MenuScreen.cpp client/MenuScreen.h)
 
 set(SERVER_SOURCES
         server/Server.cpp server/Server.h)

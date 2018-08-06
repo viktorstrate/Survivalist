@@ -70,6 +70,7 @@ namespace survivalist {
             gClient->gWorld->handleEvent(&e);
         }
 
+        SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
         SDL_RenderClear(gRenderer);
 
         gCamera.update(dt);

@@ -8,6 +8,7 @@
 #include "Client.h"
 #include "game/Player.h"
 #include "game/GameWorld.h"
+#include "client/MenuScreen.h"
 
 using namespace std::literals::chrono_literals;
 
@@ -48,16 +49,11 @@ namespace survivalist {
         willQuit = false;
 
 
-        gWorld = new GameWorld(&gGraphics);
-
-        Player* mainPlayer = new Player(gWorld, {127, 127}, true);
-
-        gWorld->spawnPlayer(mainPlayer);
-        gGraphics.gCamera.gFollowingEntity = mainPlayer;
+        //gWorld = new GameWorld(&gGraphics);
+        gWorld = new MenuScreen(&gGraphics);
 
         gameLoop();
 
-        delete mainPlayer;
     }
 
     Client::~Client() {

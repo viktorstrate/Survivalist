@@ -22,7 +22,7 @@ namespace survivalist {
         bool connectToServer(const char* host, unsigned short port);
 
         bool willQuit;
-        GameWorld* gWorld;
+        World* gWorld;
 
         Graphics gGraphics;
         Uint32 gPreviousUpdateTime = 0;

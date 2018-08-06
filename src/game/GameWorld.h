@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <SDL.h>
+#include "core/World.h"
 
 namespace survivalist {
 
@@ -16,8 +17,10 @@ namespace survivalist {
     class Graphics;
 #endif
 
-    class GameWorld {
+    class GameWorld : public World {
     public:
+
+        ~GameWorld();
 
 #ifdef GAME_SERVER
         explicit GameWorld();
@@ -25,7 +28,7 @@ namespace survivalist {
 
         void init();
 
-        void update(unsigned int dt);
+        void update(unsigned int dt) override;
 
         void spawnPlayer(Player* player);
 
@@ -33,11 +36,11 @@ namespace survivalist {
 
         explicit GameWorld(Graphics* graphics);
 
-        void render(Graphics* graphics);
+        void render(Graphics* graphics) override;
 
-        void handleEvent(SDL_Event* event);
+        void handleEvent(SDL_Event* event) override;
 
-        Graphics* gGraphics;
+//        Graphics* gGraphics;
 
 #endif
 
