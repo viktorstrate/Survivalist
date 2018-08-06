@@ -19,14 +19,18 @@ namespace survivalist {
 
             // Calculate delta time and sleep
 
-            Uint32 sleepTime = SDL_GetTicks() - gPreviousUpdateTime;
-            std::this_thread::sleep_for(8ms - std::chrono::milliseconds(sleepTime));
 
             Uint32 currentUpdateTime = SDL_GetTicks();
 
             if (gPreviousUpdateTime == 0) {
                 std::cout << "First update" << std::endl;
                 gPreviousUpdateTime = currentUpdateTime;
+            }
+
+            int sleepTime = 8 - currentUpdateTime - gPreviousUpdateTime;
+
+            if (sleepTime > 0) {
+                SDL_Delay(static_cast<Uint32>(sleepTime));
             }
 
             Uint32 deltaTime = currentUpdateTime - gPreviousUpdateTime;
