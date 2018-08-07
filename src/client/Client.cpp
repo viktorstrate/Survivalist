@@ -50,7 +50,7 @@ namespace survivalist {
 
 
         //gWorld = new GameWorld(&gGraphics);
-        gWorld = new MenuScreen(&gGraphics);
+        gWorld = new MenuScreen(this);
 
         gameLoop();
 
@@ -87,6 +87,11 @@ namespace survivalist {
         }
 
         return true;
+    }
+
+    void Client::changeWorld(World* newWorld) {
+        delete gWorld;
+        gWorld = newWorld;
     }
 
 }

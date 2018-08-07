@@ -3,11 +3,26 @@
 //
 
 #include "MenuScreen.h"
+#include "Client.h"
 
 namespace survivalist {
 
-    MenuScreen::MenuScreen(Graphics* graphics)
-            : World(graphics), playButton({20, 40}, "Play"), connectButton({20, 80}, "Connect to server") {}
+    MenuScreen::MenuScreen(Client* client)
+            : World(&client->gGraphics),
+              playButton({20, 40}, "Play"),
+              connectButton({20, 80}, "Connect to server"),
+              gClient(client) {
+
+
+        playButton.setOnClickFunc([this](){
+            this->gClient->changeWorld(new GameWorld(&this->gClient->gGraphics));
+        });
+
+        connectButton.setOnClickFunc([&client]() {
+            client->connectToServer("localhost", 1235);
+        });
+
+    }
 
     void MenuScreen::update(unsigned int dt) {
         playButton.update(dt);

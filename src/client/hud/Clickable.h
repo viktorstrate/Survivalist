@@ -17,7 +17,7 @@ namespace survivalist {
     public:
         Clickable(const vector &position, const size &size);
 
-        virtual void onClick() {};
+        virtual void onClick(SDL_MouseButtonEvent* event) {};
 
         size gSize;
         vector gPosition;

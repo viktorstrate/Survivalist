@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "client/Client.h"
 #include "core/World.h"
 #include "client/hud/TextButton.h"
 
@@ -12,7 +13,7 @@ namespace survivalist {
 
     class MenuScreen : public World {
     public:
-        MenuScreen(Graphics* graphics);
+        MenuScreen(Client* client);
 
         void update(unsigned int dt) override;
 
@@ -23,6 +24,8 @@ namespace survivalist {
     private:
         TextButton playButton;
         TextButton connectButton;
+
+        Client* gClient;
 
     };
 

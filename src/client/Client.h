@@ -21,6 +21,8 @@ namespace survivalist {
 
         bool connectToServer(const char* host, unsigned short port);
 
+        void changeWorld(World* newWorld);
+
         bool willQuit;
         World* gWorld;
 

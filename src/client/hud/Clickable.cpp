@@ -12,8 +12,13 @@ namespace survivalist {
 
             SDL_MouseButtonEvent& mouseEvent = event->button;
 
-            if (mouseEvent.state == SDL_RELEASED) {
-                std::cout << "Mouse released" << std::endl;
+            if (mouseEvent.x >= gPosition.getIntX() && mouseEvent.x <= gPosition.getIntX() + gSize.width
+                    && mouseEvent.y >= gPosition.getIntY() && mouseEvent.y <= gPosition.getIntY() + gSize.height) {
+
+                if (mouseEvent.state == SDL_RELEASED) {
+                    onClick(&mouseEvent);
+                }
+
             }
         }
     }
