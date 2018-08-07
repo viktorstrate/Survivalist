@@ -20,7 +20,7 @@ namespace survivalist {
     class GameWorld : public World {
     public:
 
-        ~GameWorld();
+        ~GameWorld() override;
 
 #ifdef GAME_SERVER
         explicit GameWorld();
@@ -39,8 +39,6 @@ namespace survivalist {
         void render(Graphics* graphics) override;
 
         void handleEvent(SDL_Event* event) override;
-
-//        Graphics* gGraphics;
 
 #endif
 

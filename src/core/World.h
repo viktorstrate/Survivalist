@@ -12,10 +12,10 @@ namespace survivalist {
     public:
         virtual void update(unsigned int dt) = 0;
 
-        virtual ~World() {};
+        virtual ~World() = default;
 
 #ifdef GAME_SERVER
-        explicit World() {}
+        explicit World() = default;
 #endif
 
 #ifdef GAME_CLIENT
