@@ -18,8 +18,13 @@ namespace survivalist {
             this->gClient->changeWorld(new GameWorld(&this->gClient->gGraphics));
         });
 
-        connectButton.setOnClickFunc([&client]() {
-            client->connectToServer("localhost", 1235);
+        connectButton.setOnClickFunc([this, &client]() {
+            bool connectSuccess = client->connectToServer("localhost", 1235);
+
+            if (connectSuccess) {
+                this->gClient->changeWorld(new GameWorld(&this->gClient->gGraphics));
+            }
+
         });
 
     }

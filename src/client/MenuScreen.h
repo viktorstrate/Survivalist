@@ -13,7 +13,7 @@ namespace survivalist {
 
     class MenuScreen : public World {
     public:
-        MenuScreen(Client* client);
+        explicit MenuScreen(Client* client);
 
         void update(unsigned int dt) override;
 

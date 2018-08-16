@@ -62,7 +62,7 @@ namespace survivalist {
 
     bool Client::connectToServer(const char* host, unsigned short port) {
 
-        gClient = enet_host_create(NULL, 1, 2, 0, 0);
+        gClient = enet_host_create(nullptr, 1, 2, 0, 0);
 
         enet_address_set_host(&gAddress, host);
         gAddress.port = port;
